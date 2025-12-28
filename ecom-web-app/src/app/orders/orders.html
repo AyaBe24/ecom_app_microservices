@@ -1,0 +1,29 @@
+<div class="container">
+  <div *ngIf="!orders || orders.length === 0" class="alert alert-info">
+    No orders found for this customer.
+  </div>
+
+  <table class="table" *ngIf="orders && orders.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>CustomerId</th>
+        <th>Total Amount</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let o of orders">
+        <td>{{o.id}}</td>
+        <td>{{o.billingDate | date:'dd/MM/yyyy HH:mm'}}</td>
+        <td>{{o.customerId}}</td>
+        <td>{{o.total | currency:'USD'}}</td>
+        <td>
+          <button class="btn btn-success" (click)="getOrderDetails(o)">Order Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

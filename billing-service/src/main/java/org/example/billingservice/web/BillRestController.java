@@ -1,8 +1,5 @@
 package org.example.billingservice.web;
 
-
-
-
 import org.example.billingservice.Entities.Bill;
 import org.example.billingservice.Repository.BillRepository;
 import org.example.billingservice.Repository.ProductItemRepository;
@@ -23,13 +20,26 @@ public class BillRestController {
     private CustomerRestClient customerRestClient;
     @Autowired
     private ProductRestClient productRestClient;
+
     @GetMapping(path = "/bills/{id}")
-    public Bill getBill(@PathVariable Long id){
+    public Bill getBill(@PathVariable Long id) {
         Bill bill = billRepository.findById(id).get();
         bill.setCustomer(customerRestClient.getCustomerById(bill.getCustomerId()));
         bill.getProductItems().forEach(productItem -> {
             productItem.setProduct(productRestClient.getProductById(productItem.getProductId()));
         });
         return bill;
+    }
+
+    @GetMapping(path = "/bills/full/byCustomer/{customerId}")
+    public java.util.List<Bill> getBillsByCustomer(@PathVariable Long customerId) {
+        java.util.List<Bill> bills = billRepository.findByCustomerId(customerId);
+        bills.forEach(bill -> {
+            bill.setCustomer(customerRestClient.getCustomerById(bill.getCustomerId()));
+            bill.getProductItems().forEach(productItem -> {
+                productItem.setProduct(productRestClient.getProductById(productItem.getProductId()));
+            });
+        });
+        return bills;
     }
 }

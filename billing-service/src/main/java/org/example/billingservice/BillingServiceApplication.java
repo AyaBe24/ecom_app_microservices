@@ -1,14 +1,11 @@
 package org.example.billingservice;
 
-
-
 import org.example.billingservice.Entities.Bill;
 import org.example.billingservice.Entities.ProductItem;
 import org.example.billingservice.Repository.BillRepository;
 import org.example.billingservice.Repository.ProductItemRepository;
 import org.example.billingservice.feign.CustomerRestClient;
 import org.example.billingservice.feign.ProductRestClient;
-
 import org.example.billingservice.model.Customer;
 import org.example.billingservice.model.Product;
 import org.springframework.boot.CommandLineRunner;
@@ -16,11 +13,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-
-
-import java.util.Collection;
 import java.util.Date;
+import java.util.Collection;
 import java.util.Random;
+
 @SpringBootApplication
 @EnableFeignClients
 public class BillingServiceApplication {
@@ -31,28 +27,45 @@ public class BillingServiceApplication {
 
     @Bean
     CommandLineRunner commandLineRunner(BillRepository billRepository,
-                                        ProductItemRepository productItemRepository,
-                                        CustomerRestClient customerRestClient,
-                                        ProductRestClient productRestClient) {
-        Collection<Customer> customers = customerRestClient.getAllCustomers().getContent();
-        Collection<Product> products = productRestClient.getAllProducts().getContent();
+            ProductItemRepository productItemRepository,
+            CustomerRestClient customerRestClient,
+            ProductRestClient productRestClient) {
+        try {
+            Collection<Customer> customers = customerRestClient.getAllCustomers().getContent();
+            Collection<Product> products = productRestClient.getAllProducts().getContent();
 
-        customers.forEach(customer -> {
-            Bill bill = Bill.builder()
-                    .billingDate(new Date())
-                    .customerId(customer.getId())
-                    .build();
-            billRepository.save(bill);
-            products.forEach(product -> {
-                ProductItem productItem = ProductItem.builder()
-                        .bill(bill)
-                        .productId(product.getId())
-                        .quantity(1+new Random().nextInt(10))
-                        .unitPrice(product.getPrice())
+            customers.forEach(customer -> {
+                Bill bill = Bill.builder()
+                        .billingDate(new Date())
+                        .customerId(customer.getId())
                         .build();
-                productItemRepository.save(productItem);
+                billRepository.save(bill);
+                Bill bill2 = Bill.builder()
+                        .billingDate(new Date())
+                        .customerId(customer.getId())
+                        .build();
+                billRepository.save(bill2);
+                products.forEach(product -> {
+                    ProductItem productItem = ProductItem.builder()
+                            .bill(bill)
+                            .productId(product.getId())
+                            .quantity(1 + new Random().nextInt(10))
+                            .unitPrice(product.getPrice())
+                            .build();
+                    productItemRepository.save(productItem);
+                    ProductItem productItem2 = ProductItem.builder()
+                            .bill(bill2)
+                            .productId(product.getId())
+                            .quantity(1 + new Random().nextInt(10))
+                            .unitPrice(product.getPrice())
+                            .build();
+                    productItemRepository.save(productItem2);
+                });
             });
-        });
+        } catch (Exception e) {
+            System.err.println("WARNING: Could not seed data on startup. Dependent services might be unavailable: "
+                    + e.getMessage());
+        }
         return args -> {
 
         };

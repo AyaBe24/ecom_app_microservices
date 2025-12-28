@@ -4,9 +4,7 @@ package org.example.inventoryservice.Entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@NoArgsConstructor
-@AllArgsConstructor @Getter @Setter @Builder @ToString
+@Entity @NoArgsConstructor @AllArgsConstructor @Data @Builder @ToString
 public class Product {
     @Id
     private String id;

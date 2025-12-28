@@ -1,0 +1,30 @@
+<div class="container">
+  <div *ngIf="error" class="alert alert-danger">
+    Error loading customers: {{ error.message || error }}
+  </div>
+  <div *ngIf="customers && !customers?._embedded?.customers" class="alert alert-warning">
+    No customers found.
+  </div>
+  <table class="table" *ngIf="customers?._embedded?.customers">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of customers?._embedded?.customers">
+        <td>{{c.id}}</td>
+        <td>{{c.name}}</td>
+        <td>{{c.email}}</td>
+        <td>
+          <button class="btn btn-success" (click)="getOrders(c)">Orders</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
