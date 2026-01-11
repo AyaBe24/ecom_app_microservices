@@ -92,5 +92,17 @@ Le billing-service agrège les données des autres services pour construire une 
  - Détail d’une facture complète avec infos client et produits : 'http://localhost:8889/BILLING-SERVICE/bills/1'
    <img width="612" height="772" alt="image" src="https://github.com/user-attachments/assets/08f82480-0fc3-4bd9-b8bf-d76aa4ca9a34" />
 
+### f. Frontend
+- La liste des produits : http://localhost:4200/products
+<img width="1876" height="622" alt="image" src="https://github.com/user-attachments/assets/e1bc7a7d-58a1-4435-8809-923e170e6fdc" />
+-La liste des clients : http://localhost:4200/customers
+<img width="1893" height="515" alt="image" src="https://github.com/user-attachments/assets/5bb77223-d3b6-471c-b076-01ff7b5198ed" />
+-La liste des commandes par clients : http://localhost:4200/orders/1
+<img width="1853" height="457" alt="image" src="https://github.com/user-attachments/assets/057d51d2-6730-46a6-bf54-528ecec8c7f6" />
+- Details de la commande : http://localhost:4200/order-details/1
+<img width="1873" height="686" alt="image" src="https://github.com/user-attachments/assets/33a2d7fa-90f5-4295-b15d-e4a771895c31" />
+
+
+
 
 ---
