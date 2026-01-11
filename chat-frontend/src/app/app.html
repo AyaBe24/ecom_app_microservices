@@ -1,0 +1,48 @@
+<div class="app-layout" [class.collapsed]="isSidebarCollapsed">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">E</div>
+                <span class="logo-text" *ngIf="!isSidebarCollapsed">E-com Admin</span>
+            </div>
+            <button class="toggle-btn" (click)="toggleSidebar()">
+                <lucide-icon [name]="isSidebarCollapsed ? MenuIcon : CloseIcon"></lucide-icon>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a routerLink="/chat" routerLinkActive="active" class="nav-item">
+                <lucide-icon [name]="ChatIcon" class="nav-icon"></lucide-icon>
+                <span class="nav-label" *ngIf="!isSidebarCollapsed">Assistant IA</span>
+            </a>
+            <a routerLink="/customers" routerLinkActive="active" class="nav-item">
+                <lucide-icon [name]="UsersIcon" class="nav-icon"></lucide-icon>
+                <span class="nav-label" *ngIf="!isSidebarCollapsed">Clients</span>
+            </a>
+            <a routerLink="/products" routerLinkActive="active" class="nav-item">
+                <lucide-icon [name]="ProductsIcon" class="nav-icon"></lucide-icon>
+                <span class="nav-label" *ngIf="!isSidebarCollapsed">Produits</span>
+            </a>
+            <a routerLink="/bills" routerLinkActive="active" class="nav-item">
+                <lucide-icon [name]="BillsIcon" class="nav-icon"></lucide-icon>
+                <span class="nav-label" *ngIf="!isSidebarCollapsed">Factures</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer" *ngIf="!isSidebarCollapsed">
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info">
+                    <span class="user-name">Admin</span>
+                    <span class="user-role">Super User</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <router-outlet></router-outlet>
+    </main>
+</div>

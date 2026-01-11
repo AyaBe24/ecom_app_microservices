@@ -1,0 +1,63 @@
+<div class="page-container">
+    <header class="page-header">
+        <div class="header-content">
+            <h1>Facturation</h1>
+            <p>Suivez vos ventes et gérez vos factures clients.</p>
+        </div>
+        <button class="add-btn">Exporter Rapport</button>
+    </header>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-label">Chiffre d'Affaires</span>
+            <span class="stat-value">12,450 €</span>
+            <span class="stat-trend positive">+15%</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Factures Payées</span>
+            <span class="stat-value">84</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">En Attente</span>
+            <span class="stat-value" style="color: #f59e0b;">8</span>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>N° Facture</th>
+                    <th>Client</th>
+                    <th>Montant</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#FAC-2023-001</td>
+                    <td>Jean Dupont</td>
+                    <td>1,199 €</td>
+                    <td>21/12/2023</td>
+                    <td><span class="badge active">Payée</span></td>
+                </tr>
+                <tr>
+                    <td>#FAC-2023-002</td>
+                    <td>Marie Laurent</td>
+                    <td>279 €</td>
+                    <td>20/12/2023</td>
+                    <td><span class="badge active">Payée</span></td>
+                </tr>
+                <tr>
+                    <td>#FAC-2023-003</td>
+                    <td>Pierre Martin</td>
+                    <td>1,299 €</td>
+                    <td>18/12/2023</td>
+                    <td><span class="badge inactive" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">En
+                            attente</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <div class="header-info">
+      <div class="bot-avatar">
+        <lucide-icon [name]="BotIcon" class="icon"></lucide-icon>
+      </div>
+      <div class="header-text">
+        <h1>Assistant E-com</h1>
+        <span class="status">En ligne</span>
+      </div>
+    </div>
+    <button class="clear-btn" (click)="clearChat()" title="Effacer le chat">
+      <lucide-icon [name]="TrashIcon" class="icon-small"></lucide-icon>
+    </button>
+  </div>
+
+  <div class="messages-list" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <div *ngFor="let msg of messages" [ngClass]="{'message-user': msg.isUser, 'message-bot': !msg.isUser}">
+      <div class="message-content">
+        <div class="message-bubble">
+          {{ msg.text }}
+        </div>
+        <div class="message-meta">
+          <lucide-icon [name]="msg.isUser ? UserIcon : BotIcon" class="icon-xs"></lucide-icon>
+          <span>{{ msg.timestamp | date:'HH:mm' }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="isLoading" class="message-bot">
+      <div class="message-content">
+        <div class="message-bubble loading">
+          <lucide-icon [name]="LoaderIcon" class="icon-spin"></lucide-icon>
+          L'assistant réfléchit...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <form (ngSubmit)="sendMessage()" class="input-form">
+      <input 
+        type="text" 
+        [(ngModel)]="query" 
+        name="query" 
+        placeholder="Posez votre question ici..." 
+        autocomplete="off"
+        [disabled]="isLoading"
+      >
+      <button type="submit" [disabled]="!query.trim() || isLoading">
+        <lucide-icon [name]="SendIcon" class="icon"></lucide-icon>
+      </button>
+    </form>
+  </div>
+</div>

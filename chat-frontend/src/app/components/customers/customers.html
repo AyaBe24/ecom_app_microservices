@@ -1,0 +1,79 @@
+<div class="page-container">
+    <header class="page-header">
+        <div class="header-content">
+            <h1>Gestion des Clients</h1>
+            <p>Consultez et gérez la base de données de vos clients.</p>
+        </div>
+        <button class="add-btn">+ Nouveau Client</button>
+    </header>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-label">Total Clients</span>
+            <span class="stat-value">1,284</span>
+            <span class="stat-trend positive">+12% ce mois</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Nouveaux (7j)</span>
+            <span class="stat-value">42</span>
+            <span class="stat-trend positive">+5%</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Taux de Rétention</span>
+            <span class="stat-value">88%</span>
+            <span class="stat-trend">Stable</span>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Email</th>
+                    <th>Statut</th>
+                    <th>Dernière Commande</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <div class="avatar-small">JD</div>
+                            <span>Jean Dupont</span>
+                        </div>
+                    </td>
+                    <td>jean.dupont&#64;email.com</td>
+                    <td><span class="badge active">Actif</span></td>
+                    <td>Il y a 2 jours</td>
+                    <td><button class="action-btn">Détails</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <div class="avatar-small">ML</div>
+                            <span>Marie Laurent</span>
+                        </div>
+                    </td>
+                    <td>marie.l&#64;email.com</td>
+                    <td><span class="badge active">Actif</span></td>
+                    <td>Aujourd'hui</td>
+                    <td><button class="action-btn">Détails</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <div class="avatar-small">PM</div>
+                            <span>Pierre Martin</span>
+                        </div>
+                    </td>
+                    <td>p.martin&#64;email.com</td>
+                    <td><span class="badge inactive">Inactif</span></td>
+                    <td>Il y a 1 mois</td>
+                    <td><button class="action-btn">Détails</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
